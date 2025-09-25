@@ -1,0 +1,97 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: chat-app-backend
+  namespace: chat-app-namespace
+spec:
+  selector:
+    matchLabels:
+      app: chat-app-backend-pod
+  template:
+    metadata:
+      name: chat-app-backend-pod
+      labels:
+        app: chat-app-backend-pod
+    spec:
+      containers:
+      - name: chat-app-backend-container
+        image: bharaths73/chat-app-backend:latest
+        ports:
+         - containerPort: 5000
+        env:
+          - name: PORT
+            value: "5000"
+          - name: DATABASE_URL
+            valueFrom:
+              configMapKeyRef:
+                name: chat-app-backend-configmap
+                key: MONGO_URI
+          - name: FOLDER_NAME
+            valueFrom:
+              configMapKeyRef:
+                name: chat-app-backend-configmap
+                key: FOLDER_NAME
+          - name: REDIS_URL
+            valueFrom:
+              configMapKeyRef:
+                name: chat-app-backend-configmap
+                key: REDIS_URL
+          - name: KAFKA_BROKER_URL
+            valueFrom:
+              configMapKeyRef:
+                name: chat-app-backend-configmap
+                key: KAFKA_BROKER_URL
+          - name: JWT_SECRET
+            valueFrom:
+              secretKeyRef:
+                name: chat-app-backend-secret
+                key: JWT_SECRET
+          - name: KAFKA_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: chat-app-backend-secret
+                key: KAFKA_USERNAME
+          - name: KAFKA_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: chat-app-backend-secret
+                key: KAFKA_PASSWORD
+          - name: CLOUDINARY_CLOUD_NAME
+            valueFrom:
+              secretKeyRef:
+                name: chat-app-backend-secret
+                key: CLOUDINARY_CLOUD_NAME
+          - name: CLOUDINARY_API_KEY
+            valueFrom:
+              secretKeyRef:
+                name: chat-app-backend-secret
+                key: CLOUDINARY_API_KEY
+          - name: CLOUDINARY_API_SECRET
+            valueFrom:
+              secretKeyRef:
+                name: chat-app-backend-secret
+                key: CLOUDINARY_API_SECRET
+        resources:
+          requests:
+            memory: "500Mi"
+            cpu: "500m"
+          limits:
+            memory: "1Gi"
+            cpu: "700m"
+        livenessProbe:
+            httpGet:
+              path: /health
+              port: 5000
+            initialDelaySeconds: 10
+            periodSeconds: 15
+            timeoutSeconds: 2
+            failureThreshold: 3
+        readinessProbe:
+            httpGet:
+              path: /health
+              port: 5000
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            timeoutSeconds: 2
+            failureThreshold: 3
+          

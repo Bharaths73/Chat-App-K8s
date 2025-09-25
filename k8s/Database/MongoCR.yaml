@@ -1,0 +1,21 @@
+apiVersion: mongodbcommunity.mongodb.com/v1
+kind: MongoDBCommunity
+metadata:
+  name: chat-app-mongodb
+  namespace: chat-app-namespace
+spec:
+  members: 3
+  type: ReplicaSet
+  version: "5.0.15"
+  security:
+    authentication:
+      modes: ["SCRAM"]
+  users:
+    - name: appuser
+      db: chat-app-db
+      passwordSecretRef:
+        name: chat-app-mongodb-secret
+      roles:
+        - name: readWrite
+          db: chat-app-db
+      scramCredentialsSecretName: chat-app-scram-credentials

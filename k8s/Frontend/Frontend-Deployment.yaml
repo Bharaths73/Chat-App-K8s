@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: chat-app-frontend
+  namespace: chat-app-namespace
+  labels:
+    app: chat-app-frontend
+spec:
+  selector:
+    matchLabels:
+      app: chat-app-frontend-pod
+  template:
+    metadata:
+      labels:
+        app: chat-app-frontend-pod
+    spec:
+      containers:
+      - name: chat-app-frontend-container
+        image: bharaths73/chat-app-frontend:latest
+        resources:
+          requests:
+            memory: "300Mi"
+            cpu: "250m"
+          limits:
+            memory: "500Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80

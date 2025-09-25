@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: chat-app-backend
+  namespace: chat-app-namespace
+spec:
+  selector:
+    app: chat-app-backend-pod
+  ports:
+    - port: 5000
+      targetPort: 5000
+  type: ClusterIP

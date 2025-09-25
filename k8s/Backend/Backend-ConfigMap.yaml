@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: chat-app-backend-configmap
+  namespace: chat-app-namespace
+data:
+  MONGO_URI: mongodb://appuser:root%40123@chat-app-mongodb-svc.chat-app-namespace.svc.cluster.local:27017/chat-app-db?authSource=chat-app-db
+  FOLDER_NAME: main_project
+  REDIS_URL: redis://:4wFOXD2tQL@my-redis-master.default.svc.cluster.local:6379
+  KAFKA_BROKER_URL: my-kafka.default.svc.cluster.local:9092
