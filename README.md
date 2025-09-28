@@ -7,6 +7,7 @@ A real-time chat application built using MongoDB, Express.js, React.js, and Node
 ✅ *User Authentication* – Secure login/signup with JWT.  
 ✅ *Real-time Messaging* – Send and receive messages instantly.  
 ✅ *Direct Messages (DMs)* – Private conversations between users. 
+
 ✅ *Scalable Socket Communication* – Redis as a Socket.io adapter. 
 ✅ *Reliable Messaging* – Kafka used before storing chats in DB. 
 ✅ *Responsive UI* – Works on all devices. 
