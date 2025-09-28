@@ -6,16 +6,23 @@ A real-time chat application built using MongoDB, Express.js, React.js, and Node
 
 ✅ *User Authentication* – Secure login/signup with JWT.  
 ✅ *Real-time Messaging* – Send and receive messages instantly.  
-✅ *Direct Messages (DMs)* – Private conversations between users.  
+✅ *Direct Messages (DMs)* – Private conversations between users. 
+✅ *Scalable Socket Communication* – Redis as a Socket.io adapter.
+✅ *Reliable Messaging* – Kafka used before storing chats in DB.
 ✅ *Responsive UI* – Works on all devices.  
-✅ *Dark Mode* – Because everyone loves it! 🌙  
+✅ *Dark Mode* – Because everyone loves it! 🌙 
+✅ *Kubernetes Deployment* – Containers orchestrated with Minikube.
 
 ## 🛠 Tech Stack  
 
 - *Frontend:* React.js ⚛, Redux Toolkit 🎛, Tailwind CSS 🎨  
 - *Backend:* Node.js 🚀, Express.js 🏗, MongoDB 🍃  
 - *Authentication:* JWT 🔐  
-- *Real-time Messaging:* Socket.io 🔄  
+- *Real-time Messaging:* Socket.io 🔄
+- Message Broker: Apache Kafka 🛰 – ensures reliable message delivery before DB persistence
+- In-Memory Store & Socket Adapter: Redis 🔥 – scales Socket.io across multiple pods
+- Container Orchestration: Kubernetes ☸️ – app deployed on Minikube
+- Helm Charts: Bitnami 📦 – used for deploying Redis & Kafka
 
 ## 🚀 Getting Started  
 
@@ -50,8 +57,10 @@ CLOUDINARY_API_KEY=api_key
 CLOUDINARY_API_SECRET=secret
 FOLDER_NAME=cloudinary_folder_name
 CLIENT_URL=http://localhost:5173
+KAFKA_BROKER=kafka-service:9092
+REDIS_HOST=redis-service
+REDIS_PORT=6379
 ```
-
 
 ### 4️⃣ Run the App  
 Start the *backend* server:  
@@ -68,6 +77,12 @@ npm run dev
 
 
 The app will be available at *http://localhost:5173* 🎉  
+
+5️⃣ Deploy to Kubernetes
+
+- Use Bitnami Helm charts for Redis & Kafka.
+- Deploy MongoDB with the MongoDB Kubernetes Operator.
+- Apply YAML manifests for frontend, backend, and services.
 
 ## 🖼 Screenshots  
 
