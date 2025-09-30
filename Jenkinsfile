@@ -97,11 +97,11 @@ pipeline {
             steps{
                 script{
                         dir('backend'){
-                            docker_build("Chat-App-Backend","${params.BACKEND_DOCKER_TAG}","bharaths73")
+                            docker_build("chat-app-backend","${params.BACKEND_DOCKER_TAG}","bharaths73")
                         }
                     
                         dir('frontend'){
-                            docker_build("Chat-App-Frontend","${params.FRONTEND_DOCKER_TAG}","bharaths73")
+                            docker_build("chat-app-frontend","${params.FRONTEND_DOCKER_TAG}","bharaths73")
                         }
                 }
             }
@@ -110,8 +110,8 @@ pipeline {
         stage("Docker: Push to DockerHub"){
             steps{
                 script{
-                    docker_push("Chat-App-Backend","${params.BACKEND_DOCKER_TAG}","bharaths73") 
-                    docker_push("Chat-App-Frontend","${params.FRONTEND_DOCKER_TAG}","bharaths73")
+                    docker_push("chat-app-backend","${params.BACKEND_DOCKER_TAG}","bharaths73") 
+                    docker_push("chat-app-frontend","${params.FRONTEND_DOCKER_TAG}","bharaths73")
                 }
             }
         }
