@@ -40,7 +40,6 @@ pipeline {
                     dir('k8s'){
                         sh """
                             sed -i -e s/chat-app-backend.*/chat-app-backend:${params.BACKEND_DOCKER_TAG}/g Backend/Backend-Deployment.yaml
-
                         """
                     }
                     
