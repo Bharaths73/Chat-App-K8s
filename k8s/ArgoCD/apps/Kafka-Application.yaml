@@ -4,17 +4,17 @@ metadata:
   name: kafka
   namespace: argocd
 spec:
-  project: default
+  sources:
+    - repoURL: https://charts.bitnami.com/bitnami
+      chart: kafka
+      targetRevision: 32.4.3
+    - repoURL: 'https://github.com/Bharaths73/Chat-App-K8s.git'
+      targetRevision: k8s-testing
+      ref: values
   source:
-    repoURL: 'https://github.com/Bharaths73/Chat-App-K8s.git'
-    targetRevision: k8s-testing
-    path: k8s/Kafka
     helm:
       valueFiles:
-        - values.yaml
-      chart: kafka
-      repoURL: https://charts.bitnami.com/bitnami
-      version: 32.4.3
+        - $values/k8s/Kafka/values.yaml
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: kafka

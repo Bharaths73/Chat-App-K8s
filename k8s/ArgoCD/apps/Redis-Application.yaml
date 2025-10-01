@@ -4,17 +4,17 @@ metadata:
   name: redis
   namespace: argocd
 spec:
-  project: default
+  sources:
+    - repoURL: https://charts.bitnami.com/bitnami
+      chart: redis
+      targetRevision: 22.0.7
+    - repoURL: 'https://github.com/Bharaths73/Chat-App-K8s.git'
+      targetRevision: k8s-testing
+      ref: values
   source:
-    repoURL: 'https://github.com/Bharaths73/Chat-App-K8s.git'
-    targetRevision: k8s-testing
-    path: k8s/Redis
     helm:
       valueFiles:
-        - values.yaml
-      chart: redis
-      repoURL: https://charts.bitnami.com/bitnami
-      version: 22.0.7
+        - $values/k8s/Redis/values.yaml
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: redis
