@@ -4,6 +4,7 @@ metadata:
   name: frontend
   namespace: argocd
 spec:
+  project: default
   source:
     repoURL: 'https://github.com/Bharaths73/Chat-App-K8s.git'
     targetRevision: k8s-testing
