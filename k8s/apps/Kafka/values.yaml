@@ -1,0 +1,38 @@
+# sasl:
+#   enabled: true
+#   mechanism: PLAIN
+#   users:
+#     myuser: mypassword
+
+# sasl:
+#   client:
+#     users:
+#       - user1
+#     passwords: kafka123
+
+# auth:
+#   clientProtocol: plaintext           # Protocolo de comunicación con los clientes, sin cifrado.
+#   interBrokerProtocol: plaintext 
+
+#  client:
+#     users:
+#       - user1
+#     passwords: ""
+
+# listeners:
+#   client:
+#     name: CLIENT
+#     containerPort: 9092
+#     protocol: PLAINTEXT
+#   controller:
+#     name: CONTROLLER
+#     containerPort: 9093
+#     protocol: PLAINTEXT
+#   interbroker:
+#     name: INTERNAL
+#     containerPort: 9094
+#     protocol: PLAINTEXT
+#   external:
+#     name: EXTERNAL
+#     containerPort: 9095
+#     protocol: PLAINTEXT
