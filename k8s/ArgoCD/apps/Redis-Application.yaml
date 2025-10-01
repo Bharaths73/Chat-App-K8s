@@ -7,7 +7,7 @@ spec:
   project: default
   source:
     repoURL: 'https://github.com/Bharaths73/Chat-App-K8s.git'
-    targetRevision: HEAD
+    targetRevision: k8s-testing
     path: k8s/Redis
     helm:
       valueFiles:

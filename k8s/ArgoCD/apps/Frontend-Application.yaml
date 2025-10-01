@@ -6,7 +6,7 @@ metadata:
 spec:
   source:
     repoURL: 'https://github.com/Bharaths73/Chat-App-K8s.git'
-    targetRevision: HEAD
+    targetRevision: k8s-testing
     path: k8s/Frontend
   destination:
     server: 'https://kubernetes.default.svc'
