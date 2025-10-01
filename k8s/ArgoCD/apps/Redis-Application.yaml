@@ -14,7 +14,7 @@ spec:
         - values.yaml
       chart: redis
       repoURL: https://charts.bitnami.com/bitnami
-      version: 20.0.1
+      version: 22.0.7
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: redis

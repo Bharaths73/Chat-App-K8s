@@ -14,7 +14,7 @@ spec:
         - values.yaml
       chart: kafka
       repoURL: https://charts.bitnami.com/bitnami
-      version: 17.0.1
+      version: 32.4.3
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: kafka
