@@ -4,6 +4,7 @@ metadata:
   name: redis
   namespace: argocd
 spec:
+  project: default
   sources:
     - repoURL: https://charts.bitnami.com/bitnami
       chart: redis
