@@ -1,5 +1,5 @@
 image:
-  registry: docker.io/bitnamicharts
+  registry: docker.io/bitnamilegacy
   repository: kafka
   tag: latest # secure image tag
 

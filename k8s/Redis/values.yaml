@@ -2,7 +2,7 @@ auth:
   password: redis123
 
 image:
-  registry: docker.io/bitnamicharts
+  registry: docker.io/bitnamilegacy
   repository: redis
   tag: latest # secure image tag
 
