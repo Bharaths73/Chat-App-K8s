@@ -1,2 +1,7 @@
 auth:
   password: redis123
+
+image:
+  registry: docker.io/bitnami
+  repository: redis
+  tag: latest # secure image tag

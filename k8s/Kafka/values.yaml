@@ -1,3 +1,10 @@
+image:
+  registry: docker.io/bitnami
+  repository: kafka
+  tag: latest # secure image tag
+
+
+
 # sasl:
 #   enabled: true
 #   mechanism: PLAIN
