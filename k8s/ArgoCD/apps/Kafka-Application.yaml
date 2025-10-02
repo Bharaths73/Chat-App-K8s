@@ -1,23 +1,23 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: kafka
+  name: redis
   namespace: argocd
 spec:
   project: default
   sources:
     - repoURL: https://charts.bitnami.com/bitnami
-      chart: kafka
-      targetRevision: 32.4.3
+      chart: redis
+      targetRevision: 22.0.7
       helm:
         valueFiles:
-          - $values/k8s/Kafka/values.yaml
+          - $values/k8s/Redis/values.yaml
     - repoURL: 'https://github.com/Bharaths73/Chat-App-K8s.git'
       targetRevision: k8s-testing
       ref: values
   destination:
     server: 'https://kubernetes.default.svc'
-    namespace: kafka
+    namespace: redis
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
