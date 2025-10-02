@@ -9,19 +9,18 @@ spec:
     - repoURL: https://charts.bitnami.com/bitnami
       chart: kafka
       targetRevision: 32.4.3
+      helm:
+        valueFiles:
+          - $values/k8s/Kafka/values.yaml
     - repoURL: 'https://github.com/Bharaths73/Chat-App-K8s.git'
       targetRevision: k8s-testing
       ref: values
-  source:
-    helm:
-      valueFiles:
-        - $values/k8s/Kafka/values.yaml
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: kafka
   syncPolicy:
     syncOptions:
-    - CreateNamespace=true
+      - CreateNamespace=true
     automated:
       prune: true
       selfHeal: true
