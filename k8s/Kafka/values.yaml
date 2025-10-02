@@ -1,9 +1,11 @@
 image:
-  registry: docker.io/bitnami
+  registry: docker.io/bitnamicharts
   repository: kafka
   tag: latest # secure image tag
 
-
+global:
+  security:
+    allowInsecureImages: true
 
 # sasl:
 #   enabled: true

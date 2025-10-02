@@ -2,6 +2,11 @@ auth:
   password: redis123
 
 image:
-  registry: docker.io/bitnamisecure
+  registry: docker.io/bitnamicharts
   repository: redis
   tag: latest # secure image tag
+
+global:
+  security:
+    allowInsecureImages: true
+
