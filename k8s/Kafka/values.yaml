@@ -9,8 +9,12 @@ global:
 
 auth:
   clientProtocol: sasl_plaintext
-  username: myuser
-  existingSecret: kafka-user-passwords
+  enabled: true
+  existingSecret: ""
+  users:
+    - name: user1
+      password: kafka123
+
 
 
 # sasl:
