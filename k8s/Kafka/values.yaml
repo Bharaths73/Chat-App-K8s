@@ -1,11 +1,17 @@
 image:
   registry: docker.io/bitnamilegacy
   repository: kafka
-  tag: latest # secure image tag
+  tag: latest
 
 global:
   security:
     allowInsecureImages: true
+
+auth:
+  clientProtocol: sasl_plaintext
+  username: myuser
+  existingSecret: kafka-user-passwords
+
 
 # sasl:
 #   enabled: true
