@@ -7,14 +7,13 @@ global:
   security:
     allowInsecureImages: true
 
-auth:
-  clientProtocol: sasl_plaintext           # Protocolo de comunicación con los clientes,
-  sasl:
-    jaas:
-      clientUsers:
-        - user1
-      clientPasswords:
-        - kafka123
+sasl:
+  client:
+    users:
+      - kafka
+    passwords:
+      - kafka123
+
 
 
 
