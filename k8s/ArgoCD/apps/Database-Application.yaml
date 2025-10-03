@@ -6,11 +6,15 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://mongodb.github.io/helm-charts
-    chart: mongodb-kubernetes
-    targetRevision: 1.4.0
-    helm:
-      releaseName: mongodb-kubernetes-operator
+    - repoURL: https://mongodb.github.io/helm-charts
+      chart: mongodb-kubernetes
+      targetRevision: 1.4.0
+      helm:
+        releaseName: mongodb-kubernetes-operator
+    - repoURL: 'https://github.com/Bharaths73/Chat-App-K8s.git'
+      targetRevision: k8s-testing
+      path: k8s/Database
+      ref: cr
   destination:
     server: https://kubernetes.default.svc
     namespace: mongodb
