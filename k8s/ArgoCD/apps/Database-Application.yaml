@@ -1,26 +1,29 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: mongodb-operator
+  name: mongodb
   namespace: argocd
 spec:
   project: default
-  source:
+  sources:
+    # 1️⃣ Helm chart for MongoDB Operator
     - repoURL: https://mongodb.github.io/helm-charts
       chart: mongodb-kubernetes
       targetRevision: 1.4.0
       helm:
         releaseName: mongodb-kubernetes-operator
+    
+    # 2️⃣ Git repo for your MongoDBCommunity CR + Secret
     - repoURL: 'https://github.com/Bharaths73/Chat-App-K8s.git'
       targetRevision: k8s-testing
-      path: k8s/Database
+      path: k8s/Database   # <-- put your CR + secret manifests here
       ref: cr
   destination:
     server: https://kubernetes.default.svc
-    namespace: mongodb
+    namespace: chat-app-namespace
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
     syncOptions:
-    - CreateNamespace=true
+      - CreateNamespace=true
