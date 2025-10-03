@@ -13,7 +13,7 @@ spec:
         valueFiles:
           - $values/k8s/Redis/values.yaml
     - repoURL: 'https://github.com/Bharaths73/Chat-App-K8s.git'
-      targetRevision: k8s-testing
+      targetRevision: HEAD
       ref: values
   destination:
     server: 'https://kubernetes.default.svc'
