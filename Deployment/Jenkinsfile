@@ -34,24 +34,21 @@ pipeline {
         }
         
         
-        stage("Update: Kubernetes manifests"){
-            steps{
-                script{
-                    dir('k8s'){
-                        sh """
-                            sed -i -e s/chat-app-backend.*/chat-app-backend:${params.BACKEND_DOCKER_TAG}/g Backend/Backend-Deployment.yaml
-                        """
-                    }
-                    
-                    dir('k8s'){
-                        sh """
-                            sed -i -e s/chat-app-frontend.*/chat-app-frontend:${params.FRONTEND_DOCKER_TAG}/g Frontend/Frontend-Deployment.yaml
-                        """
-                    }
-                    
+        stage("Update: Kubernetes manifests") {
+        steps {
+            script {
+                dir('k8s') {
+                    sh """
+                    sed -i -E 's|(image: chat-app-backend:).*|\\1${params.BACKEND_DOCKER_TAG}|' Backend/Backend-Deployment.yaml
+                    """
+                    sh """
+                    sed -i -E 's|(image: chat-app-frontend:).*|\\1${params.FRONTEND_DOCKER_TAG}|' Frontend/Frontend-Deployment.yaml
+                    """
                 }
             }
         }
+}
+
         
         stage("Git: Code update and push to GitHub"){
             steps{
