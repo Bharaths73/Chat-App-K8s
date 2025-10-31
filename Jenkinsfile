@@ -6,6 +6,16 @@ pipeline {
         SONAR_HOME = tool "Sonar"
         NVD_API_KEY = credentials('NVD-API')
     } 
+//     SONAR_HOME = tool "Sonar"
+
+// The tool directive tells Jenkins to locate the installation path of a tool that has been configured under
+// “Manage Jenkins → Global Tool Configuration”.
+
+// 🔹 tool "Sonar"
+
+// "Sonar" is the name of a tool configured in Jenkins (typically the SonarQube Scanner).
+
+// Jenkins will find the installation path of that tool and assign it to the variable SONAR_HOME.
     
     parameters {
         string(name: 'FRONTEND_DOCKER_TAG', defaultValue: '', description: 'Setting docker image for latest push')
@@ -61,6 +71,11 @@ pipeline {
                 }
             }
         }
+
+//      "Sonar-Server"
+// The name of your SonarQube server configured in Jenkins under Manage Jenkins → Configure System → SonarQube Servers.
+// Matches the value you used in withSonarQubeEnv("Sonar-Server") inside your shared function.
+
         
         // stage("SonarQube: Code Quality Gates"){
         //     steps{
