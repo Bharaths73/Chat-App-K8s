@@ -142,3 +142,67 @@ pipeline {
         }
     }
 }
+
+// 🔹 1. post { ... }
+
+// The post block is used in Jenkins Declarative Pipelines to define actions that should occur after the stage or the entire pipeline completes, regardless of whether it succeeded, failed, or was aborted.
+
+// You can have sections like:
+
+// always { ... }
+
+// success { ... }
+
+// failure { ... }
+
+// unstable { ... }
+
+// aborted { ... }
+
+// In this case, we are using success {} → only executes if the pipeline completes successfully.
+
+// 🔹 2. success { ... }
+
+// Defines steps that will run only when the build succeeds.
+
+// Meaning: all preceding stages passed without errors.
+
+// This is typically where we trigger deployments, notifications, or artifact archiving.
+
+// 🔹 3. archiveArtifacts artifacts: 'dependency-check-report/*.*', allowEmptyArchive: true
+
+// This is a Jenkins step used to save build outputs (artifacts) from the workspace into Jenkins for later viewing or download.
+
+// Let’s break down the parameters:
+
+// artifacts: 'dependency-check-report/*.*' → specifies which files/folders to archive.
+// Here it archives all files inside the folder dependency-check-report/.
+
+// allowEmptyArchive: true → prevents the build from failing if the specified folder doesn’t exist or is empty.
+
+// ✅ Example use:
+// If you used OWASP Dependency Check earlier to generate reports, this step ensures the resulting reports (.html, .xml, .json, etc.) are saved in Jenkins under the “Archived Artifacts” section for review.
+
+// 🔹 4. build job: "Chat-App-CD", parameters: [ ... ]
+
+// This line triggers another Jenkins job named "Chat-App-CD".
+// This is commonly done to start a Continuous Deployment (CD) pipeline after the current Continuous Integration (CI) job finishes.
+
+// Let’s break it down:
+
+// Part	Description
+// job: "Chat-App-CD"	The name of the downstream Jenkins job to trigger
+// parameters: [...]	List of parameters to pass into the triggered job
+// 🔹 5. string(name: 'FRONTEND_DOCKER_TAG', value: "${params.FRONTEND_DOCKER_TAG}")
+
+// Passes a string parameter named FRONTEND_DOCKER_TAG to the triggered job.
+
+// The value comes from the current pipeline’s parameter ${params.FRONTEND_DOCKER_TAG}.
+
+// Example: If your Jenkins job was triggered with parameter FRONTEND_DOCKER_TAG = v1.0.0, this line sends that same value to the downstream deployment job.
+
+// 🔹 6. string(name: 'BACKEND_DOCKER_TAG', value: "${params.BACKEND_DOCKER_TAG}")
+
+// Same as above, but for your backend image tag.
+
+// This is typically used when both frontend and backend Docker images are built and tagged separately in CI, then deployed together in the CD pipeline.
